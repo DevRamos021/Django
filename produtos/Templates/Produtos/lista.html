@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>🛍️ Lista de Produtos</title>
+    <style>
+        :root {
+            --azul: #007bff;
+            --azul-hover: #0056b3;
+            --fundo: #f4f6fc;
+            --branco: #ffffff;
+            --sombra: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fundo);
+            padding: 30px;
+        }
+
+        header {
+            background-color: var(--azul);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            box-shadow: var(--sombra);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.01);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            background-color: #eef1f7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #e3ebf7;
+        }
+
+        .produto-nome {
+            font-size: 18px;
+        }
+
+        .botao {
+            background-color: var(--azul);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .botao:hover {
+            background-color: var(--azul-hover);
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .botao {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>🛒 Loja Interativa de Produtos</header>
+
+    <div class="container">
+        <ul>
+            {% for produto in produtos %}
+                <li>
+                    <span class="produto-nome">📦 {{ produto.nome }}</span>
+                    <a href="{% url 'detalhe_produto' produto.id %}" class="botao">🔍 Ver Detalhes</a>
+                </li>
+            {% empty %}
+                <li>Nenhum produto cadastrado ainda 😢</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>Desenvolvido com ❤️ usando Django e HTML5</footer>
+</body>
+</html>
