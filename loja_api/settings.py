@@ -34,6 +34,7 @@ DATABASES = {
     }
 }
 
+
 # Application definition
 
 INSTALLED_APPS = [
